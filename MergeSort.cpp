@@ -7,6 +7,7 @@ void merge(int arr[], int left, int right) {
         } else {
             aux[idx++] = arr[j++];
         }
+        timesInFor++;
     }
     
     while(i<middle) {

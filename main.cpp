@@ -5,9 +5,9 @@
 #include <locale.h>
 #include <math.h>
 
-#define AMOUNT_TESTS 10
+#define AMOUNT_TESTS 100
 
-int n = 10000;
+int n = 1000;
 int timesInFor = 0;
 
 #include "BubbleSortBreno.cpp"
