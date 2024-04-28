@@ -150,7 +150,7 @@ void execute()
         double cyclesDeviation = calculateDeviation(forCycles[j], avrForCycles, AMOUNT_TESTS);
 
         printf("\n------------------------------------------------------\n");
-        printf("%s - Resultados: \n\n", algorithmsNames[j]);
+        printf("%s \n\n", algorithmsNames[j]);
 
         printf("Tempo medio das Execucoes: %.6f\n", avrTimes);
         printf("Quantidade media de comparacoes executadas: %E\n", avrForCycles);
