@@ -1,0 +1,97 @@
+
+body{
+    font-family: 'Rubik';
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+.page_header{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+h1{
+    text-align: center;
+    font-size: 2.375rem;
+    margin: 1.5rem;
+}
+
+.students_names{
+    width: 50rem;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.main_table{
+    font-size: 1.25rem;
+    width: 80%;
+    border-spacing: 0; 
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.main_table th {
+    width: 10rem;
+    text-align: center;
+    height: 6rem;
+    width: 9rem;
+    text-align: center;
+}
+
+.table_header{
+    background-color: #5DFDCB !important;
+    border-radius: 20px;
+}
+
+.main_table td {
+    width: 10rem;
+    text-align: center;
+    height: 4rem;
+}
+
+/* Estilo para as linhas pares */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para as linhas ímpares */
+tr:nth-child(odd) {
+    background-color: #fdfdfd;
+}
+
+.legenda{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.legenda_main{
+    width: 40%;
+}
+
+.table_legenda{
+    font-size: 18px;
+    width: 30%;
+    border-collapse: collapse; 
+    margin-top: 0rem;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table_legenda tr{
+    padding: 20px;
+    height: 4rem;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.table_legenda_header{
+    background-color: #F15946 !important;
+}

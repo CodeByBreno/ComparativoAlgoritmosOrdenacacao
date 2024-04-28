@@ -6,6 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include <string>
+#include <string.h>
 
 #define AMOUNT_TESTS 10
 #define AMOUNT_FUNCTIONS 6
@@ -79,10 +80,10 @@ void writeInHTML(char *line, int tag)
     switch (tag)
     {
     case 0:
-        sprintf(result, "%s%s%s", "<p>", line, "</p>");
+        sprintf(result, "%s%s%s", "\t\t\t<td>", line, "</td>\n");
         break;
-    case 1:
-        sprintf(result, "%s%s%s", "<h1>", line, "</h1>");
+    default: 
+        strcpy(result, line);
         break;
     }
 
@@ -141,6 +142,14 @@ void execute()
         }
     }
 
+    writeInHTML("\n\t\t<table class=\"main_table\">\n"
+                    "\t\t<tr class=\"table_header\">\n"
+                        "\t\t\t<th>Algoritmo</th>\n"
+                        "\t\t\t<th>Tempo de Execucao</th>\n"
+                        "\t\t\t<th>Quantidade de Instrucoes</th>\n"
+                        "\t\t\t<th>Desvio Padrao do Tempo de Execucoes</th>\n"
+                        "\t\t\t<th>Desvio Padrao da Quantidade de Instrucoes</th>\n"
+                    "\t\t</tr>\n", 50);
     char line[200];
     for (int j = 0; j < AMOUNT_FUNCTIONS; j++)
     {
@@ -157,16 +166,18 @@ void execute()
         printf("Desvio padrao das medidas de tempo: %.6f\n", timeDeviation);
         printf("Desvio padrao das comparacoes realizadas: %.2f\n", cyclesDeviation);
 
-        sprintf(line, "%s - Resultados: \n\n", algorithmsNames[j]);
-        writeInHTML(line, 1);
-        sprintf(line, "Tempo medio das Execucoes: %.6f\n", avrTimes);
+        writeInHTML("\t\t<tr>\n", 50);
+        sprintf(line, "%s", algorithmsNames[j]);
         writeInHTML(line, 0);
-        sprintf(line, "Quantidade media de comparacoes executadas: %E\n", avrTimes);
+        sprintf(line, "%.4fs", avrTimes);
         writeInHTML(line, 0);
-        sprintf(line, "Desvio padrao das medidas de tempo: %.6f\n", timeDeviation);
+        sprintf(line, "%.2E", avrForCycles);
         writeInHTML(line, 0);
-        sprintf(line, "Desvio padrao das comparacoes realizadas: %.2f\n", cyclesDeviation);
+        sprintf(line, "%.4f", timeDeviation);
         writeInHTML(line, 0);
+        sprintf(line, "%.2f", cyclesDeviation);
+        writeInHTML(line, 0);
+        writeInHTML("\t\t\t</tr>\n", 50);
     }
 }
 
@@ -174,11 +185,14 @@ void createHTML()
 {
     fprintf(htmlFile, "<!DOCTYPE html>\n");
     fprintf(htmlFile, "<html>\n");
-    fprintf(htmlFile, "<head>\n");
-    fprintf(htmlFile, "<title>Algoritmos de Ordenacao</title>\n");
-    fprintf(htmlFile, "</head>\n");
-    fprintf(htmlFile, "<body>\n");
-    fprintf(htmlFile, "<h1>Resultado</h1>\n");
+    fprintf(htmlFile, "\t<head>\n");
+    fprintf(htmlFile, "\t\t<title>Algoritmos de Ordenacao</title>\n");
+    fprintf(htmlFile, "\t\t<link rel=\"stylesheet\" href=\"styles.css\">\n");
+    fprintf(htmlFile, "\t</head>\n");
+    fprintf(htmlFile, "\t<body>\n");
+    fprintf(htmlFile, "\t\t<header class=\"page_header\">\n");
+    fprintf(htmlFile, "\t\t\t<h1>Comparando Algoritmos de Ordenacao</h1>\n");
+    fprintf(htmlFile, "\t\t\t<p class=\"students_names\">Feito por: Alan Victor de Souza Pinho, Breno Gabriel de Souza Coelho, Daniel Alencar Penha Carvalho, Mateus Junior de Macedo Cavalcanti, Maic de Oliveira Santos.</p></header>");
 }
 
 int main()
@@ -190,15 +204,33 @@ int main()
     {
         printf("Erro ao criar o arquivo HTML.");
     }
+    createHTML();
     execute();
 
-    writeInHTML("</body>\n", 0);
-    writeInHTML("</html>\n", 0);
-    fclose(htmlFile);
+    writeInHTML("\t</table>\n", 50);
+    writeInHTML("\t<div class=\"legenda\">\n", 50);
+    writeInHTML("\t\t<div class=\"legenda_main\"><p><strong>Tempo de Execucao</strong>: Quanto tempo o sistema levou para executar o algoritmo por completo, em media</p>\n", 50);
+    writeInHTML("\t\t<p><strong>Quantidade de Instrucoes</strong>: Quantidade de vezes que foram feitas comparacoes (if...) durante a execucao do algoritmo, em media</p>\n", 50);
+    writeInHTML("\t\t<p><strong>Desvio Padrao</strong>: Mede o desvio padrao das estatisticas geradas. Lembre que foram feitas diferentes medicoes e o resultado apresentado e a media desses</p></div>", 50);
 
-    char lixo;
-    printf("Finalizar execucao?");
-    scanf(" %c", &lixo);
+    writeInHTML("\n\t\t<table class=\"table_legenda\">\n"
+                    "\t\t\t<tr class=\"table_legenda_header\">\n"
+                    "\t\t\t\t<th>Tamanho do Array</th>\n"
+                    "\t\t\t\t<th>Qtd. Repeticoes</th>\n"
+                    "\t\t\t</tr>\n"
+                    "\t\t\t<tr>\n", 50);
+
+
+    fprintf(htmlFile, "\t\t\t<td>%d</td>\n", n);
+    fprintf(htmlFile, "\t\t\t<td>%d</td>\n", AMOUNT_TESTS);
+    writeInHTML("\t\t</tr>\n"
+                "\t\t\t</table>\n", 50);
+    
+    writeInHTML("\t\t</table>\n", 50);
+    writeInHTML("\t</div>\n", 50);
+    writeInHTML("\t</body>\n", 50);
+    writeInHTML("</html>\n", 50);
+    fclose(htmlFile);
 
     return 0;
 }

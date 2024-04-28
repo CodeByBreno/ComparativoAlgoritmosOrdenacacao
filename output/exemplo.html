@@ -1,39 +1,79 @@
-<h1>Insertion Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.074600
-</p><p>Quantidade media de comparacoes executadas: 7.460000E-002
-</p><p>Desvio padrao das medidas de tempo: 0.074640
-</p><p>Desvio padrao das comparacoes realizadas: 171232.29
-</p><h1>Selection Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.060700
-</p><p>Quantidade media de comparacoes executadas: 6.070000E-002
-</p><p>Desvio padrao das medidas de tempo: 0.060740
-</p><p>Desvio padrao das comparacoes realizadas: 0.00
-</p><h1>Bubble Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.137000
-</p><p>Quantidade media de comparacoes executadas: 1.370000E-001
-</p><p>Desvio padrao das medidas de tempo: 0.137007
-</p><p>Desvio padrao das comparacoes realizadas: 0.00
-</p><h1>Quick Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.000800
-</p><p>Quantidade media de comparacoes executadas: 8.000000E-004
-</p><p>Desvio padrao das medidas de tempo: 0.001000
-</p><p>Desvio padrao das comparacoes realizadas: 6379.64
-</p><h1>Merge Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.000800
-</p><p>Quantidade media de comparacoes executadas: 8.000000E-004
-</p><p>Desvio padrao das medidas de tempo: 0.000894
-</p><p>Desvio padrao das comparacoes realizadas: 69.11
-</p><h1>Heap Sort - Resultados: 
-
-</h1><p>Tempo medio das Execucoes: 0.001300
-</p><p>Quantidade media de comparacoes executadas: 1.300000E-003
-</p><p>Desvio padrao das medidas de tempo: 0.001378
-</p><p>Desvio padrao das comparacoes realizadas: 132.89
-</p><p></body>
-</p><p></html>
-</p>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Algoritmos de Ordenacao</title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<header class="page_header">
+			<h1>Comparando Algoritmos de Ordenacao</h1>
+			<p class="students_names">Feito por: Alan Victor de Souza Pinho, Breno Gabriel de Souza Coelho, Daniel Alencar Penha Carvalho, Mateus Junior de Macedo Cavalcanti, Maic de Oliveira Santos.</p></header>
+		<table class="main_table">
+		<tr class="table_header">
+			<th>Algoritmo</th>
+			<th>Tempo de Execucao</th>
+			<th>Quantidade de Instrucoes</th>
+			<th>Desvio Padrao do Tempo de Execucoes</th>
+			<th>Desvio Padrao da Quantidade de Instrucoes</th>
+		</tr>
+		<tr>
+			<td>Insertion Sort</td>
+			<td>0.0751s</td>
+			<td>2.50E+007</td>
+			<td>0.0752</td>
+			<td>131620.13</td>
+			</tr>
+		<tr>
+			<td>Selection Sort</td>
+			<td>0.0590s</td>
+			<td>5.00E+007</td>
+			<td>0.0590</td>
+			<td>0.00</td>
+			</tr>
+		<tr>
+			<td>Bubble Sort</td>
+			<td>0.1365s</td>
+			<td>5.00E+007</td>
+			<td>0.1367</td>
+			<td>0.00</td>
+			</tr>
+		<tr>
+			<td>Quick Sort</td>
+			<td>0.0005s</td>
+			<td>1.60E+005</td>
+			<td>0.0007</td>
+			<td>4302.79</td>
+			</tr>
+		<tr>
+			<td>Merge Sort</td>
+			<td>0.0009s</td>
+			<td>1.20E+005</td>
+			<td>0.0012</td>
+			<td>82.09</td>
+			</tr>
+		<tr>
+			<td>Heap Sort</td>
+			<td>0.0015s</td>
+			<td>2.58E+005</td>
+			<td>0.0016</td>
+			<td>94.62</td>
+			</tr>
+	</table>
+	<div class="legenda">
+		<div class="legenda_main"><p><strong>Tempo de Execucao</strong>: Quanto tempo o sistema levou para executar o algoritmo por completo, em media</p>
+		<p><strong>Quantidade de Instrucoes</strong>: Quantidade de vezes que foram feitas comparacoes (if...) durante a execucao do algoritmo, em media</p>
+		<p><strong>Desvio Padrao</strong>: Mede o desvio padrao das estatisticas geradas. Lembre que foram feitas diferentes medicoes e o resultado apresentado e a media desses</p></div>
+		<table class="table_legenda">
+			<tr class="table_legenda_header">
+				<th>Tamanho do Array</th>
+				<th>Qtd. Repeticoes</th>
+			</tr>
+			<tr>
+			<td>10000</td>
+			<td>10</td>
+		</tr>
+			</table>
+		</table>
+	</div>
+	</body>
+</html>
