@@ -24,6 +24,7 @@ void heapify(int arr[], int n, int i)
         arr[largest] = temp;
         // Recursivamente heapify a subárvore afetada
         heapify(arr, n, largest);
+        timesInFor+=2;
     }
 }
 
@@ -33,18 +34,18 @@ void heapSort(int arr[], int left, int right)
     for (int i = right / 2 - 1; i >= left; i--)
     {
         heapify(arr, right, i);
-        timesInFor++;
+        timesInFor+=2;
     }
 
     // Extrai elementos um por um da heap
     for (int i = right; i >= left; i--)
     {
         // Move a raiz atual para o final
-        int temp = arr[left];
-        arr[left] = arr[i];
-        arr[i] = temp;
+        int temp = arr[i];
+        arr[i] = arr[left];
+        arr[left] = temp;
         // Chama heapify na heap reduzida
         heapify(arr, i, left);
-        timesInFor++;
+        timesInFor+=2;
     }
 }

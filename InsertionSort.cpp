@@ -1,7 +1,7 @@
 void insertionSort(int vet[], int low, int high) {
     int aux;
     
-    for(int i=1;i<high;i++) {
+    for(int i=1 ; i<= high ; i++) {
         	int j=i;
         	while(j>0 && vet[j-1]>vet[j]) {
             	aux=vet[j];

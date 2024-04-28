@@ -23,16 +23,20 @@ void merge(int arr[], int left, int right) {
     }
 }
 
-void mergesort(int arr[], int left, int right) {
+void executeMergeSort(int arr[], int left, int right) {
     // Dividir
     int middle=(left+right)/2;
     
     // Conquistar
     if(middle-left > 1)
-        mergesort(arr, left, middle);
+        executeMergeSort(arr, left, middle);
     if(right-middle > 1)
-        mergesort(arr, middle, right);
+        executeMergeSort(arr, middle, right);
     
     // Combinar
     merge(arr, left, right);
+}
+
+void mergeSort(int arr[], int left, int right) {
+    executeMergeSort(arr, left, right+1);
 }
