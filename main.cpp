@@ -3,6 +3,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <locale.h>
+#include <math.h>
 
 #define AMOUNT_TESTS 10
 
@@ -36,7 +37,7 @@ resultTest executeTest(function algorithm)
 {
     resultTest result;
 
-    // Gerando um array aleatâ”œâ”‚rio
+    // Gerando um array aleatÃ³rio
     unsigned long long seed = currentTimestampMillis();
     srand((unsigned)seed);
     int arr[n];
@@ -45,7 +46,7 @@ resultTest executeTest(function algorithm)
         arr[i] = rand() % (n + 1);
     }
 
-    // Medindo o tempo de execuâ”œÂºâ”œÃºo
+    // Medindo o tempo de execu‡Æo
     clock_t start, end;
     double cpu_time_used;
 
@@ -53,16 +54,6 @@ resultTest executeTest(function algorithm)
     algorithm(arr, 0, n - 1);
     end = clock();
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
-
-    // // Gerando o resultado
-    // printf("\n\nArray ordenado:\n");
-    // for (int i = 0; i < n; i++) {
-    //     printf("%d ", arr[i]);
-    // }
-    // printf("\n");
-
-    // printf("Tempo de execucao: %f segundos\n", cpu_time_used);
-    // printf("Quantidade de vezes dentro do For: %d\n", timesInFor);
 
     result.time = cpu_time_used;
     result.forCycles = timesInFor;
@@ -75,8 +66,9 @@ void execute(function algorithm, char *text)
     int turn;
     resultTest aux;
 
-    double averagaTime, averageForCycles;
+    double averagaTime = 0, averageForCycles = 0;
     double times[AMOUNT_TESTS], forCycles[AMOUNT_TESTS];
+    double deviationTime = 0, deviationForCycles = 0;
 
     for (turn = 0; turn < AMOUNT_TESTS; turn++)
     {
@@ -86,6 +78,7 @@ void execute(function algorithm, char *text)
         forCycles[turn] = aux.forCycles;
     }
 
+    // C lculo do valor m‚dio
     for (int i = 0; i < AMOUNT_TESTS; i++)
     {
         averagaTime += times[i];
@@ -94,10 +87,22 @@ void execute(function algorithm, char *text)
     averagaTime /= AMOUNT_TESTS;
     averageForCycles /= AMOUNT_TESTS;
 
+    // Calculo do desvio padrÆo
+    for (int i =0; i < AMOUNT_TESTS; i++){
+        deviationTime += pow(times[i] - averagaTime, 2);
+        deviationForCycles += pow(forCycles[i] - averageForCycles, 2);
+    }
+    deviationTime /= AMOUNT_TESTS;
+    deviationForCycles /= AMOUNT_TESTS;
+    deviationTime = sqrt(deviationTime);
+    deviationForCycles = sqrt(AMOUNT_TESTS);
+
     printf("\n------------------------------------------------------------------");
     printf("\n%s", text);
-    printf("\nTempo mï¿½dio de execuï¿½ï¿½o do cï¿½digo: %.10f\n", averagaTime);
-    printf("Quantidade mï¿½dia de instruï¿½ï¿½es executadas para concluir o algoritmo: %E\n\n", averageForCycles);
+    printf("\nTempo m‚dio de execu‡Æo do c¢digo: %.10f\n", averagaTime);
+    printf("Quantidade m‚dia de instru‡äes executadas para concluir o algoritmo: %E\n\n", averageForCycles);
+    printf("Desvio padrÆo das medidas de tempo: %.10f\n", deviationTime);
+    printf("Desvio padrÆo das medidas de quantidade de instru‡äes: %.10f\n", deviationForCycles);
 }
 
 int main()
@@ -105,10 +110,10 @@ int main()
     setlocale(LC_ALL, "Portuguese_Brasil");
 
     execute(insertionSort, "Insertion Sort");
+    execute(selectionSort, "Selection Sort");
     execute(bubbleSort, "Bubble Sort");
     execute(quickSort, "Quick Sort");
     execute(mergesort, "Merge Sort");
-    execute(selectionSort, "Selection Sort");
     execute(heapSort, "Heap Sort");
 
     char lixo;
