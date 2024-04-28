@@ -95,7 +95,7 @@ void execute(function algorithm, char *text)
     deviationTime /= AMOUNT_TESTS;
     deviationForCycles /= AMOUNT_TESTS;
     deviationTime = sqrt(deviationTime);
-    deviationForCycles = sqrt(AMOUNT_TESTS);
+    deviationForCycles = sqrt(deviationForCycles);
 
     printf("\n------------------------------------------------------------------");
     printf("\n%s", text);
