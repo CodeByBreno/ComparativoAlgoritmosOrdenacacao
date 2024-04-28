@@ -13,29 +13,35 @@ int timesInFor = 0;
 #include "InsertionSort.cpp"
 #include "QuickSortDaniel.cpp"
 #include "MergeSort.cpp"
+#include "SelectionSortMateus.cpp"
+#include "HeapSortMateus.cpp"
 
-struct resultTest {
+struct resultTest
+{
     double time;
     int forCycles;
 };
 
-typedef void (*function)(int*, int, int);
+typedef void (*function)(int *, int, int);
 
-long long currentTimestampMillis() {
+long long currentTimestampMillis()
+{
     struct timeval te;
-    gettimeofday(&te, NULL); // Obter o tempo atual
+    gettimeofday(&te, NULL);                                         // Obter o tempo atual
     long long milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000; // Calcular o timestamp em milissegundos
     return milliseconds;
 }
 
-resultTest executeTest(function algorithm){
+resultTest executeTest(function algorithm)
+{
     resultTest result;
 
     // Gerando um array aleatâ”œâ”‚rio
     unsigned long long seed = currentTimestampMillis();
     srand((unsigned)seed);
     int arr[n];
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         arr[i] = rand() % (n + 1);
     }
 
@@ -44,7 +50,7 @@ resultTest executeTest(function algorithm){
     double cpu_time_used;
 
     start = clock();
-    algorithm(arr, 0, n-1);
+    algorithm(arr, 0, n - 1);
     end = clock();
     cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
 
@@ -64,40 +70,46 @@ resultTest executeTest(function algorithm){
     return result;
 }
 
-void execute(function algorithm, char* text){
+void execute(function algorithm, char *text)
+{
     int turn;
     resultTest aux;
 
     double averagaTime, averageForCycles;
     double times[AMOUNT_TESTS], forCycles[AMOUNT_TESTS];
 
-    for (turn = 0; turn < AMOUNT_TESTS; turn++){
+    for (turn = 0; turn < AMOUNT_TESTS; turn++)
+    {
         timesInFor = 0;
         aux = executeTest(algorithm);
         times[turn] = aux.time;
         forCycles[turn] = aux.forCycles;
     }
 
-    for (int i = 0; i < AMOUNT_TESTS; i++){
+    for (int i = 0; i < AMOUNT_TESTS; i++)
+    {
         averagaTime += times[i];
-        averageForCycles += forCycles[i];        
+        averageForCycles += forCycles[i];
     }
     averagaTime /= AMOUNT_TESTS;
     averageForCycles /= AMOUNT_TESTS;
 
     printf("\n------------------------------------------------------------------");
     printf("\n%s", text);
-    printf("\nTempo m‚dio de execu‡Æo do c¢digo: %.10f\n", averagaTime);
-    printf("Quantidade m‚dia de instru‡äes executadas para concluir o algoritmo: %E\n\n", averageForCycles);
+    printf("\nTempo mï¿½dio de execuï¿½ï¿½o do cï¿½digo: %.10f\n", averagaTime);
+    printf("Quantidade mï¿½dia de instruï¿½ï¿½es executadas para concluir o algoritmo: %E\n\n", averageForCycles);
 }
 
-int main() {
+int main()
+{
     setlocale(LC_ALL, "Portuguese_Brasil");
-    
+
     execute(insertionSort, "Insertion Sort");
     execute(bubbleSort, "Bubble Sort");
     execute(quickSort, "Quick Sort");
     execute(mergesort, "Merge Sort");
+    execute(selectionSort, "Selection Sort");
+    execute(heapSort, "Heap Sort");
 
     char lixo;
     printf("Finalizar execucao?");
