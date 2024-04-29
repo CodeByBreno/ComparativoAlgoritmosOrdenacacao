@@ -14,6 +14,11 @@
 int n = 10000;
 int timesInFor = 0;
 
+FILE *htmlFile;
+
+double times[AMOUNT_FUNCTIONS][AMOUNT_TESTS], forCycles[AMOUNT_FUNCTIONS][AMOUNT_TESTS];
+char *algorithmsNames[] = { "Insertion Sort", "Selection Sort", "Bubble Sort", "Quick Sort", "Merge Sort", "Heap Sort"};
+
 #include "BubbleSortBreno.cpp"
 #include "InsertionSort.cpp"
 #include "QuickSortDaniel.cpp"
@@ -21,8 +26,8 @@ int timesInFor = 0;
 #include "SelectionSortMateus.cpp"
 #include "HeapSortMateus.cpp"
 #include "auxiliar.cpp"
+#include "Visual.cpp"
 
-FILE *htmlFile;
 struct resultTest
 {
     double time;
@@ -73,30 +78,10 @@ void checkIfIsOrdered(int *arr, int size)
     return;
 }
 
-void writeInHTML(char *line, int tag)
-{
-    char result[250];
-
-    switch (tag)
-    {
-    case 0:
-        sprintf(result, "%s%s%s", "\t\t\t<td>", line, "</td>\n");
-        break;
-    default: 
-        strcpy(result, line);
-        break;
-    }
-
-    fprintf(htmlFile, result);
-}
-
 void execute()
 {
     resultTest data;
-    double times[AMOUNT_FUNCTIONS][AMOUNT_TESTS], forCycles[AMOUNT_FUNCTIONS][AMOUNT_TESTS];
     function algorithms[] = {insertionSort, selectionSort, bubbleSort, quickSort, mergeSort, heapSort};
-    char *algorithmsNames[] = {
-        "Insertion Sort", "Selection Sort", "Bubble Sort", "Quick Sort", "Merge Sort", "Heap Sort"};
 
     for (int i = 0; i < AMOUNT_TESTS; i++)
     {
@@ -169,7 +154,7 @@ void execute()
         writeInHTML("\t\t<tr>\n", 50);
         sprintf(line, "%s", algorithmsNames[j]);
         writeInHTML(line, 0);
-        sprintf(line, "%.4fs", avrTimes);
+        sprintf(line, "%.4fms", avrTimes);
         writeInHTML(line, 0);
         sprintf(line, "%.2E", avrForCycles);
         writeInHTML(line, 0);
@@ -179,55 +164,25 @@ void execute()
         writeInHTML(line, 0);
         writeInHTML("\t\t\t</tr>\n", 50);
     }
-}
 
-void createHTML()
-{
-    fprintf(htmlFile, "<!DOCTYPE html>\n");
-    fprintf(htmlFile, "<html>\n");
-    fprintf(htmlFile, "\t<head>\n");
-    fprintf(htmlFile, "\t\t<title>Algoritmos de Ordenacao</title>\n");
-    fprintf(htmlFile, "\t\t<link rel=\"stylesheet\" href=\"styles.css\">\n");
-    fprintf(htmlFile, "\t</head>\n");
-    fprintf(htmlFile, "\t<body>\n");
-    fprintf(htmlFile, "\t\t<header class=\"page_header\">\n");
-    fprintf(htmlFile, "\t\t\t<h1>Comparando Algoritmos de Ordenacao</h1>\n");
-    fprintf(htmlFile, "\t\t\t<p class=\"students_names\">Feito por: Alan Victor de Souza Pinho, Breno Gabriel de Souza Coelho, Daniel Alencar Penha Carvalho, Mateus Junior de Macedo Cavalcanti, Maic de Oliveira Santos.</p></header>");
+    writeInHTML("\t</table>\n", 50);
 }
 
 int main()
 {
     setlocale(LC_ALL, "Portuguese_Brasil");
-    htmlFile = fopen("exemplo.html", "w"); // Abre o arquivo para escrita
+    htmlFile = fopen("analise.html", "w"); // Abre o arquivo para escrita
 
     if (htmlFile == NULL)
     {
         printf("Erro ao criar o arquivo HTML.");
     }
+
     createHTML();
     execute();
+    buildCaption();
+    buildDetailedTables();
 
-    writeInHTML("\t</table>\n", 50);
-    writeInHTML("\t<div class=\"legenda\">\n", 50);
-    writeInHTML("\t\t<div class=\"legenda_main\"><p><strong>Tempo de Execucao</strong>: Quanto tempo o sistema levou para executar o algoritmo por completo, em media</p>\n", 50);
-    writeInHTML("\t\t<p><strong>Quantidade de Instrucoes</strong>: Quantidade de vezes que foram feitas comparacoes (if...) durante a execucao do algoritmo, em media</p>\n", 50);
-    writeInHTML("\t\t<p><strong>Desvio Padrao</strong>: Mede o desvio padrao das estatisticas geradas. Lembre que foram feitas diferentes medicoes e o resultado apresentado e a media desses</p></div>", 50);
-
-    writeInHTML("\n\t\t<table class=\"table_legenda\">\n"
-                    "\t\t\t<tr class=\"table_legenda_header\">\n"
-                    "\t\t\t\t<th>Tamanho do Array</th>\n"
-                    "\t\t\t\t<th>Qtd. Repeticoes</th>\n"
-                    "\t\t\t</tr>\n"
-                    "\t\t\t<tr>\n", 50);
-
-
-    fprintf(htmlFile, "\t\t\t<td>%d</td>\n", n);
-    fprintf(htmlFile, "\t\t\t<td>%d</td>\n", AMOUNT_TESTS);
-    writeInHTML("\t\t</tr>\n"
-                "\t\t\t</table>\n", 50);
-    
-    writeInHTML("\t\t</table>\n", 50);
-    writeInHTML("\t</div>\n", 50);
     writeInHTML("\t</body>\n", 50);
     writeInHTML("</html>\n", 50);
     fclose(htmlFile);

@@ -43,7 +43,7 @@ h1{
 }
 
 .table_header{
-    background-color: #5DFDCB !important;
+    background-color: #5DFDCB;
     border-radius: 20px;
 }
 
@@ -54,12 +54,12 @@ h1{
 }
 
 /* Estilo para as linhas pares */
-tr:nth-child(even) {
+tr:nth-child(even):not(:first-child) {
     background-color: #f2f2f2;
 }
 
-/* Estilo para as linhas ímpares */
-tr:nth-child(odd) {
+/* Estilo para as linhas ímpares, exceto a primeira */
+tr:nth-child(odd):not(:first-child) {
     background-color: #fdfdfd;
 }
 
@@ -70,6 +70,7 @@ tr:nth-child(odd) {
     align-content: center;
     justify-content: center;
     gap: 4rem;
+    margin-bottom: 3rem;
 }
 
 .legenda_main{
@@ -93,5 +94,27 @@ tr:nth-child(odd) {
 }
 
 .table_legenda_header{
-    background-color: #F15946 !important;
+    background-color: #F15946;
+}
+
+.detailed_table{
+    width: 80%;
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+.detailed_table td{
+    padding: 8px;
+}
+
+.detailed_table_header{
+    background-color: #5de2fd;
+    height: 2rem;
+}
+
+.detailed_cycle_cell{
+    background-color: #265670;
+    color: white;
 }
