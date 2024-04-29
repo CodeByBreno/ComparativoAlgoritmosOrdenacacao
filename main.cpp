@@ -160,7 +160,7 @@ void execute()
         writeInHTML("\t\t<tr>\n", 50);
         sprintf(line, "%s", algorithmsNames[j]);
         writeInHTML(line, 0);
-        sprintf(line, "%.4fms", avrTimes);
+        sprintf(line, "%.4fs", avrTimes);
         writeInHTML(line, 0);
         sprintf(line, "%.2E", avrForCycles);
         writeInHTML(line, 0);
