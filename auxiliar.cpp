@@ -32,12 +32,12 @@ double calculateAverage(double *arr, int size)
     return average;
 }
 
-double calculateDeviation(double *arr, int avr, int size)
+double calculateDeviation(double *arr, double avr, int size)
 {
     double deviation = 0;
     for (int i = 0; i < size; i++)
     {
-        deviation += pow(arr[i] - avr, 2);
+        deviation += (arr[i] - avr)*(arr[i] - avr);
     }
     deviation /= size;
     deviation = sqrt(deviation);
