@@ -23,4 +23,6 @@ serão apresentados os valores gerados pela análise.
 <p align="center">
   <img src="https://github.com/CodeByBreno/ComparativoAlgoritmosOrdenacacao/assets/132024181/0455010d-1fec-4f7f-ad27-2e496e6bb701)" width="800" alt="analise_algoritmos_ordenacao">
 </p>
-
+<p align="center">
+  <img src="https://github.com/CodeByBreno/ComparativoAlgoritmosOrdenacacao/assets/132024181/878987d9-2ce4-458f-8c00-82bdd41f217d" width="800" alt="analise_algoritmos_ordenacao">
+</p>
