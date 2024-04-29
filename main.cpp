@@ -10,6 +10,7 @@
 
 #define AMOUNT_TESTS 10
 #define AMOUNT_FUNCTIONS 6
+#define DEBUG false
 
 int n = 10000;
 int timesInFor = 0;
@@ -98,22 +99,24 @@ void execute()
             timesInFor = 0;
             int *copiedArray = copyArray(arr, n);
 
-            if (n < 1001)
+            if (n < 1001 || DEBUG)
             {
                 printf("\n-----------------------------------\n");
                 printf("%s\n", algorithmsNames[j]);
                 printf("Original array: \n");
                 presentArray(arr);
+                getchar();
             }
 
             data = executeTest(algorithms[j], copiedArray);
 
-            if (n < 1001)
+            if (n < 1001 || DEBUG)
             {
                 printf("ordered\n");
                 presentArray(copiedArray);
                 printf("Original array after ordering: \n");
                 presentArray(arr);
+                getchar();
             }
             else
             {
@@ -147,7 +150,7 @@ void execute()
         printf("%s \n\n", algorithmsNames[j]);
 
         printf("Tempo medio das Execucoes: %.6f\n", avrTimes);
-        printf("Quantidade media de comparacoes executadas: %E\n", avrForCycles);
+        printf("Quantidade media de comparacoes executadas: %.3E\n", avrForCycles);
         printf("Desvio padrao das medidas de tempo: %.6f\n", timeDeviation);
         printf("Desvio padrao das comparacoes realizadas: %.2f\n", cyclesDeviation);
 

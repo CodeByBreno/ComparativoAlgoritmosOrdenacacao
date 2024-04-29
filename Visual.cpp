@@ -66,8 +66,8 @@ void buildDataTable(int option){
         writeInHTML("\t\t<tr class=\"detailed_table_row\">\n", 50);
         fprintf(htmlFile,"\t\t\t<td>%d</td>\n", i);
         for (int j = 0; j < AMOUNT_FUNCTIONS; j++){
-            if (option == 0){ fprintf(htmlFile,"\t\t\t<td>%.4f</td>\n", times[j][i]); }
-            if (option == 1){ fprintf(htmlFile,"\t\t\t<td>%.2E</td>\n", forCycles[j][i]); }
+            if (option == 0){ fprintf(htmlFile,"\t\t\t<td>%.4f ms</td>\n", times[j][i]); }
+            if (option == 1){ fprintf(htmlFile,"\t\t\t<td>%.4E comparacoes</td>\n", forCycles[j][i]); }
         }
         writeInHTML("\t\t</tr>\n", 50);
     }
