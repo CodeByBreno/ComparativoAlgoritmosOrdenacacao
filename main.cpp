@@ -7,12 +7,13 @@
 #include <iostream>
 #include <string>
 #include <string.h>
+#include <chrono>
 
 #define AMOUNT_TESTS 10
 #define AMOUNT_FUNCTIONS 6
 #define DEBUG false
 
-int n = 10000;
+int n = 50000;
 int timesInFor = 0;
 
 FILE *htmlFile;
@@ -42,13 +43,15 @@ resultTest executeTest(function algorithm, int arr[])
     resultTest result;
 
     // Medindo o tempo de execu??o
-    clock_t start, end;
-    double cpu_time_used;
+    std::chrono::high_resolution_clock::time_point start, end;
+    long double cpu_time_used;
 
-    start = clock();
+    start = std::chrono::high_resolution_clock::now();
     algorithm(arr, 0, n - 1);
-    end = clock();
-    cpu_time_used = ((double)(end - start)) / CLOCKS_PER_SEC;
+    end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<long double> duration = end - start;
+    cpu_time_used = duration.count();
 
     result.time = cpu_time_used;
     result.forCycles = timesInFor;
