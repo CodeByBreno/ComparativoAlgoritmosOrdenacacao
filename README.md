@@ -1,6 +1,6 @@
 # 📈 Análise Comparativa em Algoritmos de Ordenação
 Esse projeto foi desenvolvido para a disciplina de Algoritmo e Estrutura de Dados 2, em equipe, junto à Alan Victor de Souza Pinho, 
-Breno Gabriel de Souza Coelho (eu), Daniel Alencar Penha Carvalho, Mateus Junior de Macedo Cavalcanti, Maic de Oliveira Santo.
+Daniel Alencar Penha Carvalho, Mateus Junior de Macedo Cavalcanti, Maic de Oliveira Santo.
 
 O objetivo é compara a eficiência dos diferentes algoritmos de ordenação mais populares. As métricas usadas para essa análise foram
 o tempo de execução do código e a qauntidade de instruções (comparações) executadas pelo procedimento.
